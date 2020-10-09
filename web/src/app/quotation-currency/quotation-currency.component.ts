@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {CurrencyService} from "./services/currency.service";
 
 @Component({
   selector: 'quotation-currency',
@@ -7,7 +8,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 })
 export class QuotationCurrencyComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() {
   }
