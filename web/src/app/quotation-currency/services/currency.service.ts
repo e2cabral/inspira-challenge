@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Currency} from "../models/currency.model";
 import {environment} from "../../../environments/environment";
 
@@ -14,13 +14,15 @@ export class CurrencyService {
     return `${environment.bcb_api_url}/${endPoint}`;
   }
 
-  async getCurrencies(): Promise<Array<Currency>> {
+  async getCurrencies(): Promise<CurrencyResponse> {
     try {
       return this.http
-        .get<Array<Currency>>(CurrencyService.url('Moedas?format=json'))
+        .get<CurrencyResponse>(CurrencyService.url('Moedas?format=json'))
         .toPromise();
-    } catch (e) {
-
+    } catch (error) {
+      throw new HttpErrorResponse(error);
     }
   }
 }
+
+export type CurrencyResponse = { values: Array<Currency> }
