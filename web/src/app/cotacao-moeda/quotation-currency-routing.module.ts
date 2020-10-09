@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import {CotacaoMoedaComponent} from "./cotacao-moeda.component";
+import {QuotationCurrencyComponent} from "./quotation-currency.component";
 
 
 const routes: Routes = [
-  { path: '', component: CotacaoMoedaComponent }
+  { path: '', component: QuotationCurrencyComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CotacaoMoedaRoutingModule { }
+export class QuotationCurrencyRoutingModule { }

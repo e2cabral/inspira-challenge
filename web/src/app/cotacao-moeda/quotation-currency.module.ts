@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {CotacaoMoedaRoutingModule} from "./cotacao-moeda-routing.module";
+import {QuotationCurrencyRoutingModule} from "./quotation-currency-routing.module";
 
-import {CotacaoMoedaComponent} from "./cotacao-moeda.component";
+import {QuotationCurrencyComponent} from "./quotation-currency.component";
 import { CambioMoedaComponent } from './components/cambio-moeda/cambio-moeda.component';
 
 
 
 @NgModule({
   declarations: [
-    CotacaoMoedaComponent,
+    QuotationCurrencyComponent,
     CambioMoedaComponent
   ],
   imports: [
     CommonModule,
 
-    CotacaoMoedaRoutingModule
+    QuotationCurrencyRoutingModule
   ]
 })
-export class CotacaoMoedaModule { }
+export class QuotationCurrencyModule { }
