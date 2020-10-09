@@ -5,7 +5,7 @@ import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./cotacao-moeda/quotation-currency.module').then(m => m.QuotationCurrencyModule)
+    loadChildren: () => import('./quotation-currency/quotation-currency.module').then(m => m.QuotationCurrencyModule)
   }
 ];
 
