@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { CotacaoMoedaModule } from "./cotacao-moeda/cotacao-moeda.module";
+import { QuotationCurrencyModule } from "./cotacao-moeda/quotation-currency.module";
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { CotacaoMoedaModule } from "./cotacao-moeda/cotacao-moeda.module";
     BrowserModule,
     AppRoutingModule,
 
-    CotacaoMoedaModule
+    QuotationCurrencyModule
   ],
   providers: [],
   bootstrap: [AppComponent]
