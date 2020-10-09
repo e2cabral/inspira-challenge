@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-cambio-moeda',
+  selector: 'cambio-moeda',
   templateUrl: './cambio-moeda.component.html',
   styleUrls: ['./cambio-moeda.component.css']
 })
