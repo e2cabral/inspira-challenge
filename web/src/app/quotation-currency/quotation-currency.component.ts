@@ -17,9 +17,17 @@ export class QuotationCurrencyComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.getCurrencies();
+  }
+
+  getCurrencies(): void {
+    try {
     this.currencyService
       .getCurrencies()
       .then(({ values }) => this.currencies = values.map(({ symbol, name, currencyType }) => new Currency(symbol, name, currencyType)));
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 }
