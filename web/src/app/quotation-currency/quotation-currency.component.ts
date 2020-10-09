@@ -20,6 +20,9 @@ export class QuotationCurrencyComponent implements OnInit, AfterViewInit {
     this.getCurrencies();
   }
 
+  //
+  // @description método para obter os tipos de moedas fornecido pela api do Banco Central
+  //
   getCurrencies(): void {
     try {
     this.currencyService
