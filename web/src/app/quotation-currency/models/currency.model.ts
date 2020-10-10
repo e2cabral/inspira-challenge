@@ -1,7 +1,5 @@
-import {CurrencyType} from "./enum/currency-type.enum";
-
 export class Currency {
-  constructor(symbol: string, name: string, currencyType: CurrencyType) {
+  constructor(symbol: string, name: string, currencyType: string) {
     this.symbol = symbol;
     this.name = name;
     this.currencyType = currencyType;
@@ -9,5 +7,5 @@ export class Currency {
 
   symbol: string;
   name: string;
-  currencyType: CurrencyType;
+  currencyType: string;
 }
