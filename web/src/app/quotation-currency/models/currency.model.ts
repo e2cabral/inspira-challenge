@@ -8,4 +8,8 @@ export class Currency {
   symbol: string;
   name: string;
   currencyType: string;
+
+  get formatedName(): string {
+    return `${this.symbol} - ${this.name}`;
+  }
 }
