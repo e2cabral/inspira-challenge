@@ -1,7 +1,25 @@
 <section class="row">
   <div class="col-md-6">
     <div class="row">
-      <div class="col-12">
+      <div class="col-md-12 pt-4 pb-0">
+        <div class="form-group">
+          <div class="input-group">
+            <label>
+              <ngb-datepicker
+                navigation="select"
+                outsideDays="hidden"
+                displayMonths="2"
+                [showWeekdays]="true"
+                [formControl]="dateFormControl"
+                (dateSelect)="getQuotationByDate()"
+                #dp>
+              </ngb-datepicker>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 pt-0">
         <label for="firstCurrency"></label>
         <ng-select
           id="firstCurrency"
@@ -9,7 +27,9 @@
           [items]="currencies"
           bindLabel="formatedName"
           bindValue="symbol"
-          [formControl]="firstCurrencyFormControl">
+          (change)="getFirstQuotation()"
+          [formControl]="firstCurrencyFormControl"
+          [ngStyle]="{ width: '88%' }">
         </ng-select>
       </div>
 
@@ -21,12 +41,62 @@
           [items]="currencies"
           bindLabel="formatedName"
           bindValue="symbol"
-          [formControl]="secondCurrencyFormControl">
+          (change)="getSecondQuotation()"
+          [formControl]="secondCurrencyFormControl"
+          [ngStyle]="{ width: '88%' }">
         </ng-select>
       </div>
     </div>
   </div>
   <div class="col-md-6">
-    <h1 class="text-lg-left">$16,99</h1>
+    <div class="row">
+      <div class="col-6">
+        <div class="row" *ngIf="dateFormControl.value && firstCurrencyFormControl.value">
+          <div class="col-md-4 pt-4">
+            <h1 class="text-lg-left">
+              <strong>{{ firstCurrencyFormControl.value }}</strong>
+            </h1>
+          </div>
+          <div class="col-md-8 pt-4">
+            <h1 class="text-lg-left">${{ firstQuotation.buy }}</h1>
+          </div>
+        </div>
+        <div class="row" *ngIf="dateFormControl.value && firstCurrencyFormControl.value">
+          <div class="col-12">
+            <ul class="list-group" [ngStyle]="{ fontSize: '.8rem' }">
+              <li class="list-group-item">
+                <strong>Venda</strong> {{ firstQuotation.sell }}<br>
+                <strong>Compra</strong> {{ firstQuotation.buy }}<br>
+                <strong>Data e hora</strong> {{ firstQuotation.dateTime | date: 'dd/MM/yyyy' }} {{ firstQuotation.dateTime | date: 'hh:mm' }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="row" *ngIf="dateFormControl.value && secondCurrencyFormControl.value">
+          <div class="col-md-4 pt-4">
+            <h1 class="text-lg-left">
+              <strong>{{ secondCurrencyFormControl.value }}</strong>
+            </h1>
+          </div>
+          <div class="col-md-8 pt-4">
+            <h1 class="text-lg-left">${{ secondQuotation.buy }}</h1>
+          </div>
+        </div>
+        <div class="row" *ngIf="dateFormControl.value && secondCurrencyFormControl.value">
+          <div class="col-12">
+            <ul class="list-group" [ngStyle]="{ fontSize: '.8rem' }">
+              <li class="list-group-item">
+                <strong>Venda:</strong> {{ secondQuotation.sell }}<br>
+                <strong>Compra:</strong> {{ secondQuotation.buy }}<br>
+                <strong>Data e hora:</strong> {{ secondQuotation.dateTime | date: 'dd/MM/yyyy' }} {{ secondQuotation.dateTime | date: 'hh:mm' }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
