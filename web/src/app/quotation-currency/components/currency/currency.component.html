@@ -65,6 +65,7 @@
           <div class="col-12">
             <ul class="list-group" [ngStyle]="{ fontSize: '.8rem' }">
               <li class="list-group-item">
+                <strong>Boletim:</strong> {{ firstQuotation.notice }}<br>
                 <strong>Venda</strong> {{ firstQuotation.sell }}<br>
                 <strong>Compra</strong> {{ firstQuotation.buy }}<br>
                 <strong>Data e hora</strong> {{ firstQuotation.dateTime | date: 'dd/MM/yyyy' }} {{ firstQuotation.dateTime | date: 'hh:mm' }}
@@ -89,6 +90,7 @@
           <div class="col-12">
             <ul class="list-group" [ngStyle]="{ fontSize: '.8rem' }">
               <li class="list-group-item">
+                <strong>Boletim:</strong> {{ secondQuotation.notice }}<br>
                 <strong>Venda:</strong> {{ secondQuotation.sell }}<br>
                 <strong>Compra:</strong> {{ secondQuotation.buy }}<br>
                 <strong>Data e hora:</strong> {{ secondQuotation.dateTime | date: 'dd/MM/yyyy' }} {{ secondQuotation.dateTime | date: 'hh:mm' }}
