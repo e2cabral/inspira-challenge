@@ -27,7 +27,10 @@ export class QuotationCurrencyComponent implements OnInit, AfterViewInit {
     try {
     this.currencyService
       .getCurrencies()
-      .then(({ values }) => this.currencies = values.map(({ symbol, name, currencyType }) => new Currency(symbol, name, currencyType)));
+      .then(({ value }) => {
+        this.currencies = value.map(({ simbolo, nomeFormatado, tipoMoeda }) => new Currency(simbolo, nomeFormatado, tipoMoeda));
+        console.log(this.currencies);
+      });
     } catch (error) {
       console.error(error);
     }
