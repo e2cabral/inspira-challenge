@@ -3,7 +3,7 @@ import { readdirSync } from 'fs';
 
 export default (app: Express): void => {
   const router = Router();
-  app.use('https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata', router);
+  app.use('/v1/api', router);
 
   readdirSync(`${__dirname}/../routes`).map(async file => {
     if (!file.includes('.test.') && !file.endsWith('.map')) {
