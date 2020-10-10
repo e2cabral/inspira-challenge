@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
-import { NgxSpinnerModule } from "ngx-spinner";
+import {NgxSpinnerModule, NgxSpinnerService} from "ngx-spinner";
 
 import { QuotationCurrencyModule } from "./quotation-currency/quotation-currency.module";
 
@@ -24,7 +24,9 @@ import {CoreModule} from "./core/core.module";
 
     QuotationCurrencyModule
   ],
-  providers: [],
+  providers: [
+    NgxSpinnerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
