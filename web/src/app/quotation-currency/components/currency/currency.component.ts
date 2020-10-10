@@ -79,7 +79,7 @@ export class CurrencyComponent implements OnInit {
     }
   }
 
-  // getLastBuyingValue(quotation: Array<Quotation>): number {
-  //   return  quotation !== undefined ? quotation[quotation.length - 1].buy : 0;
-  // }
+  getBuyQuotation(firstQuote: number, secondQuote: number): string {
+    return (firstQuote / secondQuote).toFixed(2);
+  }
 }
