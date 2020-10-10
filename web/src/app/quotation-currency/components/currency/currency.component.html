@@ -7,7 +7,7 @@
           id="firstCurrency"
           placeholder="Selecione a moeda..."
           [items]="currencies"
-          bindLabel="name"
+          bindLabel="formatedName"
           bindValue="symbol"
           [formControl]="firstCurrencyFormControl">
         </ng-select>
@@ -19,7 +19,7 @@
           id="secondCurrency"
           placeholder="Selecione a moeda..."
           [items]="currencies"
-          bindLabel="name"
+          bindLabel="formatedName"
           bindValue="symbol"
           [formControl]="secondCurrencyFormControl">
         </ng-select>
