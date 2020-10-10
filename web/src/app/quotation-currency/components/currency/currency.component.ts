@@ -3,7 +3,7 @@ import {Currency} from "../../models/currency.model";
 import {FormControl} from "@angular/forms";
 
 @Component({
-  selector: 'cambio-moeda',
+  selector: 'currency',
   templateUrl: './currency.component.html',
   styleUrls: ['./currency.component.css']
 })
@@ -11,7 +11,8 @@ export class CurrencyComponent implements OnInit {
 
   @Input() currencies: Array<Currency>;
 
-  firstCurrencyFormControl: FormControl = new FormControl('');
+  firstCurrencyFormControl: FormControl = new FormControl(null);
+  secondCurrencyFormControl: FormControl = new FormControl(null);
 
   constructor() { }
 
