@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgSelectModule } from "@ng-select/ng-select";
 
 import {QuotationCurrencyRoutingModule} from "./quotation-currency-routing.module";
 
@@ -15,6 +16,7 @@ import { CurrencyComponent } from './components/currency/currency.component';
   ],
   imports: [
     CommonModule,
+    NgSelectModule,
 
     QuotationCurrencyRoutingModule
   ]
