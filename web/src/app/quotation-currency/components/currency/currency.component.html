@@ -2,19 +2,27 @@
   <div class="col-md-6">
     <div class="row">
       <div class="col-12">
-        <label for="currencyComparation1"></label>
-        <select class="form-control" name="currencyComparation1" id="currencyComparation1">
-          <option value="USD">USD - Dólar americano</option>
-          <option value="CAD">CAD - Dólar canadense</option>
-        </select>
+        <label for="firstCurrency"></label>
+        <ng-select
+          id="firstCurrency"
+          placeholder="Selecione a moeda..."
+          [items]="currencies"
+          bindLabel="name"
+          bindValue="symbol"
+          [formControl]="firstCurrencyFormControl">
+        </ng-select>
       </div>
 
       <div class="col-12">
-        <label for="currencyComparation2"></label>
-        <select class="form-control" name="currencyComparation2" id="currencyComparation2">
-          <option value="USD">USD - Dólar americano</option>
-          <option value="CAD">CAD - Dólar canadense</option>
-        </select>
+        <label for="secondCurrency"></label>
+        <ng-select
+          id="secondCurrency"
+          placeholder="Selecione a moeda..."
+          [items]="currencies"
+          bindLabel="name"
+          bindValue="symbol"
+          [formControl]="secondCurrencyFormControl">
+        </ng-select>
       </div>
     </div>
   </div>
