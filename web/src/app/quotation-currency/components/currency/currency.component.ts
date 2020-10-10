@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Currency} from "../../models/currency.model";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'cambio-moeda',
@@ -9,6 +10,8 @@ import {Currency} from "../../models/currency.model";
 export class CurrencyComponent implements OnInit {
 
   @Input() currencies: Array<Currency>;
+
+  firstCurrencyFormControl: FormControl = new FormControl('');
 
   constructor() { }
 
