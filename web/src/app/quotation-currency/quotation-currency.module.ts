@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from "@ng-select/ng-select";
+import { NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
 
 import {QuotationCurrencyRoutingModule} from "./quotation-currency-routing.module";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -20,6 +21,7 @@ import { ɵs } from '@ng-select/ng-select';
   imports: [
     CommonModule,
     NgSelectModule,
+    NgbDatepickerModule,
 
     QuotationCurrencyRoutingModule,
     ReactiveFormsModule
