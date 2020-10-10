@@ -10,13 +10,13 @@ export class CurrencyService {
   constructor(private http: HttpClient) { }
 
   private static url(endPoint: string): string {
-    return `${environment.bcb_api_url}/${endPoint}`;
+    return `${environment.bcb_api_interceptor}/${endPoint}`;
   }
 
   async getCurrencies(): Promise<CurrencyResponse> {
     try {
       return this.http
-        .get<CurrencyResponse>(CurrencyService.url('Moedas?format=json'))
+        .get<CurrencyResponse>(CurrencyService.url('moedas'))
         .toPromise();
     } catch (error) {
       throw new HttpErrorResponse(error);
@@ -35,5 +35,5 @@ export class CurrencyService {
   }
 }
 
-export type CurrencyResponse = { value: Array<{ simbolo: string, nomeFormatado: string, tipoMoeda: string }> }
+export type CurrencyResponse = Array<{ simbolo: string, nomeFormatado: string, tipoMoeda: string }>;
 export type QuotationResponse = { value: Array<{ cotacaoCompra: number, cotacaoVenda: number, dataHoraCotacao: string, tipoBoletim: string }> }
