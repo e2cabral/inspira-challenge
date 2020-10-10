@@ -1,5 +1,6 @@
-// import {Moeda} from "../../../domain/model/moeda-model";
+import http from "http";
+import {Response} from "express";
 
 export interface IObterMoedasService {
-  obter: () => void;
+  obter: (response: http.IncomingMessage, res: Response) => Promise<void>;
 }
