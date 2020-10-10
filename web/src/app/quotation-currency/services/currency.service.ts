@@ -25,4 +25,4 @@ export class CurrencyService {
   }
 }
 
-export type CurrencyResponse = { values: Array<{ simbolo: string, nomeFormatado: string, tipoMoeda: string }> }
+export type CurrencyResponse = { value: Array<{ simbolo: string, nomeFormatado: string, tipoMoeda: string }> }
