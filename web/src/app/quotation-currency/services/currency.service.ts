@@ -23,11 +23,12 @@ export class CurrencyService {
     }
   }
 
-  async getQuotationByCurrencyAndDate(currencySymbol: string, dateQuotation: string): Promise<any> {
+  async getQuotationByCurrencyAndDate(currencySymbol: string, dateQuotation: string): Promise<QuotationResponse> {
     try {
       return this.http
-        .get<any>(CurrencyService.url(`CotacaoMoedaDia(moeda=@moeda,dataCotacao=@dataCotacao)?@moeda=\'${currencySymbol}\'&@dataCotacao=\'${dateQuotation}\'&$top=100&$format=json`))
-        .toPromise();
+        .get<QuotationResponse>(
+          CurrencyService.url(`CotacaoMoedaDia(moeda=@moeda,dataCotacao=@dataCotacao)?@moeda=\'${currencySymbol}\'&@dataCotacao=\'${dateQuotation}\'&$top=100&$format=json`)
+        ).toPromise();
     } catch (error) {
       throw new HttpErrorResponse(error);
     }
@@ -35,3 +36,4 @@ export class CurrencyService {
 }
 
 export type CurrencyResponse = { value: Array<{ simbolo: string, nomeFormatado: string, tipoMoeda: string }> }
+export type QuotationResponse = { value: Array<{ cotacaoCompra: number, cotacaoVenda: number, dataHoraCotacao: string, tipoBoletim: string }> }
