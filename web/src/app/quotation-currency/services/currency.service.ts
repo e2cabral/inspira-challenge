@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {Currency} from "../models/currency.model";
 import {environment} from "../../../environments/environment";
 
 @Injectable({
