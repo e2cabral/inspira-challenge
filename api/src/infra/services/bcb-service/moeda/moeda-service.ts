@@ -1,13 +1,17 @@
 import {IObterMoedasService} from "../../../../data/services/moeda/i-obter-moedas-service";
-import env from '../../../../main/config/env';
-import https from 'https';
+import http from 'http';
+import {Response} from "express";
 
 export class MoedaService implements IObterMoedasService {
-  async obter(): Promise<void> {
-    await https.get(
-      `${env.bcb_api_url}/Moedas?format=json`,
-      { headers: { contentType: 'application/json' } }, (response) => {
-      response.on('data', (chunk) => JSON.parse(chunk.value));
-    }).end();
+
+  async obter(response: http.IncomingMessage, res: Response): Promise<void> {
+    try {
+      response.on('data', (chunk) => {
+        chunk = JSON.parse(chunk);
+        res.json(chunk.value);
+      })
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }
