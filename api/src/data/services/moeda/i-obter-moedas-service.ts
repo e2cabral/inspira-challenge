@@ -1,5 +1,5 @@
-import {Moeda} from "../../../domain/model/moeda-model";
+// import {Moeda} from "../../../domain/model/moeda-model";
 
 export interface IObterMoedasService {
-  obter: () => Promise<Array<Moeda>>;
+  obter: () => void;
 }
