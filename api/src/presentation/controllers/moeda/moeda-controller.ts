@@ -10,7 +10,7 @@ class MoedaController implements IObterMoedas {
 
   async obter(req: Request, res: Response) {
     try {
-      await https.get(
+      https.get(
         `${env.bcb_api_url}/Moedas?format=json`,
         (response) => this.moedaService.obter(response, res)
       );
