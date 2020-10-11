@@ -8,10 +8,10 @@ class CotacaoController implements IObterCotacao {
   constructor(private readonly cotacaoService: CotacaoService) {
   }
   async obter(req: Request, res: Response): Promise<void> {
-    const { moeda, data } = req.query;
+    const { moeda, dataCotacao } = req.query;
     try {
       https.get(
-        `${env.bcb_api_url}/CotacaoMoedaDia(moeda=@moeda,dataCotacao=@dataCotacao)?@moeda='${moeda}'&@dataCotacao='${data}'&format=json`,
+        `${env.bcb_api_url}/CotacaoMoedaDia(moeda=@moeda,dataCotacao=@dataCotacao)?@moeda='${moeda}'&@dataCotacao='${dataCotacao}'&format=json`,
         (response) => this.cotacaoService.obter(response, res)
       );
     } catch (error) {
