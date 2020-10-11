@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Currency} from "../../models/currency.model";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {NgbDate} from "@ng-bootstrap/ng-bootstrap";
 import {CurrencyService, QuotationResponse} from "../../services/currency.service";
 import {Quotation} from "../../models/quotation.model";
@@ -15,12 +15,15 @@ export class CurrencyComponent implements OnInit {
   @Input() currencies: Array<Currency>;
   now: Date = new Date();
 
-  firstQuotation: any;
-  secondQuotation: any;
+  firstQuotation: { buy: number, notice: string, sell: number, dateTime: string };
+  secondQuotation: { buy: number, notice: string, sell: number, dateTime: string };
 
   firstCurrencyFormControl: FormControl = new FormControl(null);
   secondCurrencyFormControl: FormControl = new FormControl(null);
   dateFormControl: FormControl = new FormControl(null);
+
+  amountFirstCurrencyFormControl: FormControl = new FormControl(1);
+  amountSecondCurrencyFormControl: FormControl = new FormControl(1);
 
   form: FormGroup = new FormGroup({
     firstCurrency: this.firstCurrencyFormControl,
@@ -31,7 +34,13 @@ export class CurrencyComponent implements OnInit {
   constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() {
-    this.dateFormControl.setValue(new NgbDate(this.now.getFullYear(), this.now.getMonth(), this.now.getDay()))
+    this.dateFormControl.setValue(new NgbDate(this.now.getFullYear(), this.now.getMonth(), this.now.getDay()));
+    this.amountFirstCurrencyFormControl
+      .valueChanges
+      .subscribe((control: any) => {
+        const unitValue = parseFloat((this.firstQuotation.buy / this.secondQuotation.buy).toFixed(2));
+        this.amountSecondCurrencyFormControl.setValue((unitValue * control).toFixed(2));
+      });
   }
 
   getFirstQuotation(): void {
@@ -80,6 +89,8 @@ export class CurrencyComponent implements OnInit {
   }
 
   getBuyQuotation(firstQuote: number, secondQuote: number): string {
-    return (firstQuote / secondQuote).toFixed(2);
+    const fisrtAmount = (this.amountFirstCurrencyFormControl.value * firstQuote);
+    const secondAmount = (this.amountSecondCurrencyFormControl.value * secondQuote);
+    return (fisrtAmount / secondAmount).toFixed(2);
   }
 }

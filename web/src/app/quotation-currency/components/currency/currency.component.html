@@ -72,6 +72,11 @@
               </li>
             </ul>
           </div>
+          <div class="col-12 pt-3">
+            <label>
+              <input type="text" class="form-control" [formControl]="amountFirstCurrencyFormControl">
+            </label>
+          </div>
         </div>
       </div>
 
@@ -97,13 +102,18 @@
               </li>
             </ul>
           </div>
+          <div class="col-12 pt-3">
+            <label>
+              <input type="text" class="form-control" [formControl]="amountSecondCurrencyFormControl" readonly>
+            </label>
+          </div>
         </div>
       </div>
     </div>
     <div class="row pt-5">
       <div class="col-12" *ngIf="secondQuotation && firstQuotation" [ngStyle]="{ background: '#fcfcfc' }">
         <h1 [ngStyle]="{ fontSize: '8rem' }">
-          {{ getBuyQuotation(firstQuotation.buy, secondQuotation.buy) }}
+          {{ this.amountSecondCurrencyFormControl.value }}
         </h1>
       </div>
     </div>
