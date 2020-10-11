@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   bcb_api_url: 'https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata',
-  bcb_api_interceptor: 'http://localhost:3000/v1/api'
+  bcb_api_interceptor: `https://inspira-challenge-api.herokuapp.com/v1/api`
 };
 
 /*
