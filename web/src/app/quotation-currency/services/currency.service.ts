@@ -27,7 +27,7 @@ export class CurrencyService {
     try {
       return this.http
         .get<QuotationResponse>(
-          CurrencyService.url(`CotacaoMoedaDia(moeda=@moeda,dataCotacao=@dataCotacao)?@moeda=\'${currencySymbol}\'&@dataCotacao=\'${dateQuotation}\'&$top=100&$format=json`)
+          CurrencyService.url(`cotacao?moeda=${currencySymbol}&dataCotacao=${dateQuotation}`)
         ).toPromise();
     } catch (error) {
       throw new HttpErrorResponse(error);
