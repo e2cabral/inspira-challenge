@@ -7,7 +7,7 @@ export class CotacaoService implements IObterCotacaoService {
     try {
       response.on('data', (chunk) => {
         chunk = JSON.parse(chunk);
-        res.json(chunk.value);
+        res.json(chunk);
       })
     } catch (error) {
       throw new Error(error);
