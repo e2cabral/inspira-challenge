@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Currency} from "../../models/currency.model";
-import {FormControl, FormGroup} from "@angular/forms";
-import {NgbDate} from "@ng-bootstrap/ng-bootstrap";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CurrencyService, QuotationResponse} from "../../services/currency.service";
 import {Quotation} from "../../models/quotation.model";
 
@@ -20,7 +19,7 @@ export class CurrencyComponent implements OnInit {
 
   firstCurrencyFormControl: FormControl = new FormControl(null);
   secondCurrencyFormControl: FormControl = new FormControl(null);
-  dateFormControl: FormControl = new FormControl(null);
+  dateFormControl: FormControl = new FormControl(null, [Validators.required]);
 
   amountFirstCurrencyFormControl: FormControl = new FormControl(1);
   amountSecondCurrencyFormControl: FormControl = new FormControl(1);
@@ -34,7 +33,7 @@ export class CurrencyComponent implements OnInit {
   constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() {
-    this.dateFormControl.setValue(new NgbDate(this.now.getFullYear(), this.now.getMonth(), this.now.getDay()));
+    // this.dateFormControl.setValue({ year: this.now.getFullYear(), month: this.now.getMonth(), day: this.now.getDate() });
     this.amountFirstCurrencyFormControl
       .valueChanges
       .subscribe((control: any) => {
@@ -44,31 +43,31 @@ export class CurrencyComponent implements OnInit {
   }
 
   getFirstQuotation(): void {
-    if (!this.dateFormControl.value) {
-      return;
-    }
+    if (this.form.invalid) return;
+
     const date = this.dateFormControl.value;
+
     this.getQuotationByCurrencyAndDate(
       this.firstCurrencyFormControl.value,
       `${date.month}-${date.day}-${date.year}`
-    ).then(({ value}) => {
-      this.firstQuotation = value.map(
-        ({ cotacaoCompra, cotacaoVenda, dataHoraCotacao, tipoBoletim }) => new Quotation(cotacaoVenda, cotacaoCompra, dataHoraCotacao, tipoBoletim)
+    ).then(async ({ value}) => {
+      this.firstQuotation = await value.map(
+        (quotation) => new Quotation(quotation.cotacaoVenda, quotation.cotacaoCompra, quotation.dataHoraCotacao, quotation.tipoBoletim)
       )[value.length - 1];
     });
   }
 
   getSecondQuotation(): void {
-    if (!this.dateFormControl.value) {
-      return;
-    }
+    if (this.form.invalid) return;
+
     const date = this.dateFormControl.value;
+
     this.getQuotationByCurrencyAndDate(
       this.secondCurrencyFormControl.value,
       `${date.month}-${date.day}-${date.year}`
-    ).then(({ value}) => {
-      this.secondQuotation = value.map(
-        ({ cotacaoCompra, cotacaoVenda, dataHoraCotacao, tipoBoletim }) => new Quotation(cotacaoVenda, cotacaoCompra, dataHoraCotacao, tipoBoletim)
+    ).then(async ({ value}) => {
+      this.secondQuotation = await value.map(
+        (quotation) => new Quotation(quotation.cotacaoVenda, quotation.cotacaoCompra, quotation.dataHoraCotacao, quotation.tipoBoletim)
       )[value.length - 1];
     });
   }
@@ -88,9 +87,7 @@ export class CurrencyComponent implements OnInit {
     }
   }
 
-  getBuyQuotation(firstQuote: number, secondQuote: number): string {
-    const fisrtAmount = (this.amountFirstCurrencyFormControl.value * firstQuote);
-    const secondAmount = (this.amountSecondCurrencyFormControl.value * secondQuote);
-    return (fisrtAmount / secondAmount).toFixed(2);
+  verifyDateEmpty(): boolean {
+    return this.dateFormControl.value && this.dateFormControl.value !== '';
   }
 }

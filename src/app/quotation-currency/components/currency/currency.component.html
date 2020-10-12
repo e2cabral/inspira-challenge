@@ -51,7 +51,7 @@
   <div class="col-md-6">
     <div class="row">
       <div class="col-6">
-        <div class="row" *ngIf="dateFormControl.value && firstCurrencyFormControl.value">
+        <div class="row" *ngIf="verifyDateEmpty() && firstCurrencyFormControl.value">
           <div class="col-md-4 pt-4">
             <h1 class="text-lg-left">
               <strong>{{ firstCurrencyFormControl.value }}</strong>
@@ -61,7 +61,7 @@
             <h1 class="text-lg-left">{{ firstQuotation.buy }}</h1>
           </div>
         </div>
-        <div class="row" *ngIf="dateFormControl.value && firstCurrencyFormControl.value">
+        <div class="row" *ngIf="verifyDateEmpty() && firstCurrencyFormControl.value">
           <div class="col-12">
             <ul class="list-group" [ngStyle]="{ fontSize: '.8rem' }">
               <li class="list-group-item">
@@ -81,7 +81,7 @@
       </div>
 
       <div class="col-6">
-        <div class="row" *ngIf="dateFormControl.value && secondCurrencyFormControl.value">
+        <div class="row" *ngIf="verifyDateEmpty() && secondCurrencyFormControl.value">
           <div class="col-md-4 pt-4">
             <h1 class="text-lg-left">
               <strong>{{ secondCurrencyFormControl.value }}</strong>
@@ -91,7 +91,7 @@
             <h1 class="text-lg-left">{{ secondQuotation.buy }}</h1>
           </div>
         </div>
-        <div class="row" *ngIf="dateFormControl.value && secondCurrencyFormControl.value">
+        <div class="row" *ngIf="verifyDateEmpty() && secondCurrencyFormControl.value">
           <div class="col-12">
             <ul class="list-group" [ngStyle]="{ fontSize: '.8rem' }">
               <li class="list-group-item">
