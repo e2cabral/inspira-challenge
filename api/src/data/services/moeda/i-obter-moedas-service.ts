@@ -1,6 +1,6 @@
-import {ClientRequest} from "http";
+import http from "http";
 import {Response} from "express";
 
 export interface IObterMoedasService {
-  obter: (response: ClientRequest, res: Response) => Promise<void>;
+  obter: (response: http.IncomingMessage, res: Response) => Promise<void>;
 }

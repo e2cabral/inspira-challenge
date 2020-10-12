@@ -8,14 +8,14 @@ import env from "../../../main/config/env";
 class MoedaController implements IObterMoedas {
   constructor(private readonly moedaService: MoedaService) {}
 
-  async obter(req: Request, res: Response) {
+  async obter(req: Request, res: Response): Promise<any> {
     try {
       https.get(
         `${env.bcb_api_url}/Moedas?format=json`,
         (response) => this.moedaService.obter(response, res)
       );
     } catch (error) {
-      console.log(error);
+      return new Error(error);
     }
   }
 
